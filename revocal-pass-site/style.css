@@ -129,6 +129,7 @@ body {
 }
 
 .headline {
+  width: 100%;
   font-size: 22px;
   font-weight: 700;
   line-height: 1.35;
@@ -138,6 +139,7 @@ body {
 }
 
 .subtext {
+  width: 100%;
   font-size: 14.5px;
   color: var(--color-muted-fg);
   margin: 0 0 28px;
@@ -218,6 +220,7 @@ body {
 }
 
 .fine-print {
+  width: 100%;
   font-size: 12.5px;
   color: var(--color-muted-fg);
   line-height: 1.6;
@@ -262,6 +265,7 @@ body {
 }
 
 .soldout-text {
+  width: 100%;
   font-size: 14.5px;
   line-height: 1.75;
   color: var(--color-fg);
@@ -270,6 +274,7 @@ body {
 }
 
 .error-text {
+  width: 100%;
   font-size: 14.5px;
   color: var(--color-error);
   margin: 8px 0 20px;
