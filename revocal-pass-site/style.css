@@ -58,14 +58,11 @@ body {
 }
 
 .support-link,
-.support-link:visited {
-  color: inherit;
-  text-decoration: underline;
-}
-
+.support-link:visited,
 .support-link:hover,
 .support-link:focus {
   color: var(--color-brand);
+  text-decoration: underline;
 }
 
 .card {
