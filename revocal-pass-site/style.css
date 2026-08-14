@@ -1,25 +1,24 @@
-/* Revocal Pass — dark theme, Revocal 공식 팔레트 기반 (§6.1) */
+/* Revocal Pass — Revocal 앱 실제 디자인 토큰 그대로(Button.styles.ts, Card.styles.ts 기준) */
 
 :root {
-  --color-bg: #0a0a0b;
-  --color-fg: #f5f5f7;
-  --color-muted-fg: rgba(245, 245, 247, 0.6);
-  --color-card-bg: rgba(255, 255, 255, 0.03);
-  --color-card-border: rgba(255, 255, 255, 0.09);
+  --color-bg: #eef3f5;       /* ColorBG */
+  --color-fg: #1a1a1a;
+  --color-muted-fg: #5e6366; /* Custom5E6366 */
 
-  --color-brand: #00a1e9;
-  --color-brand-dark: #0578ae;
-  --color-success: #32d16d;
-  --color-warning: #ff8817;
-  --color-error: #ff4848;
-  --color-accent: #7f7af6;
+  --color-card-bg: #ffffff;  /* ColorW100 */
+  --color-border: #e0e0e0;   /* CustomE0E0E0 */
 
-  --radius: 0.625rem;
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-lg: calc(var(--radius) * 1.4);
-  --radius-xl: calc(var(--radius) * 2.2);
+  --color-brand: #00a1e9;    /* ColorB */
+  --color-success: #32d16d;  /* ColorG */
+  --color-accent: #7f7af6;   /* ColorM */
+  --color-warning: #ff8817;  /* ColorO */
+  --color-error: #ff4848;    /* ColorR */
+  --color-disabled: #abafb1; /* ColorTG */
 
-  color-scheme: dark;
+  --radius: 16px;   /* 앱 Card 반경 그대로 */
+  --radius-btn: 8px; /* 앱 Button 반경 그대로 */
+
+  color-scheme: light;
 }
 
 * {
@@ -36,27 +35,9 @@ body {
   color: var(--color-fg);
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
-}
-
-/* 상단 한 곳에만 아주 옅은 radial gradient blob, ColorB 톤온톤 */
-body::before {
-  content: '';
-  position: fixed;
-  top: -20%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 900px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(0, 161, 233, 0.10) 0%, rgba(5, 120, 174, 0.05) 45%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
 }
 
 .page {
-  position: relative;
-  z-index: 1;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -68,18 +49,17 @@ body::before {
   width: 100%;
   max-width: 420px;
   background: var(--color-card-bg);
-  border: 1px solid var(--color-card-border);
-  border-radius: var(--radius-xl);
-  backdrop-filter: blur(6px);
+  border-radius: var(--radius);
   padding: 40px 32px 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .logo-row {
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,6 +79,20 @@ body::before {
   color: var(--color-brand);
 }
 
+/* 앱 차트/보조 컬러(Accent 보라, ColorM)를 로고 위 작은 포인트로 — 브랜드 팔레트 5색 중 유일하게
+   시맨틱 배지에 안 쓰이는 색이라 여기서만 가볍게 사용 */
+.logo-row::after {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  margin-left: 8px;
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
 .badge-row {
   margin-bottom: 16px;
 }
@@ -106,25 +100,21 @@ body::before {
 .badge {
   display: inline-block;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   padding: 4px 10px;
   border-radius: 999px;
   letter-spacing: 0.01em;
 }
 
 .badge.low {
-  color: var(--color-warning);
-  background: rgba(255, 136, 23, 0.16);
+  color: #b35f00;
+  background: rgba(255, 136, 23, 0.14);
 }
 
-.badge.critical {
-  color: var(--color-error);
-  background: rgba(255, 72, 72, 0.16);
-}
-
+.badge.critical,
 .badge.soldout {
-  color: var(--color-error);
-  background: rgba(255, 72, 72, 0.16);
+  color: #c02f2f;
+  background: rgba(255, 72, 72, 0.14);
 }
 
 .state {
@@ -144,6 +134,7 @@ body::before {
   line-height: 1.35;
   margin: 0 0 10px;
   letter-spacing: -0.01em;
+  color: var(--color-fg);
 }
 
 .subtext {
@@ -159,15 +150,16 @@ body::before {
   justify-content: center;
 }
 
+/* 앱 Button(primary) 그대로: 단색 #00A1E9, radius 8, 흰 텍스트 — 그라데이션 없음 */
 .btn-primary {
   width: 100%;
   border: none;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-btn);
   padding: 15px 20px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   color: #ffffff;
-  background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-dark) 100%);
+  background: var(--color-brand);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -177,7 +169,7 @@ body::before {
 }
 
 .btn-primary:hover:not(:disabled) {
-  opacity: 0.92;
+  opacity: 0.9;
 }
 
 .btn-primary:active:not(:disabled) {
@@ -185,18 +177,18 @@ body::before {
 }
 
 .btn-primary:disabled {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--color-muted-fg);
+  background: var(--color-disabled);
+  color: #ffffff;
   cursor: not-allowed;
 }
 
 .btn-secondary {
-  border: 1px solid var(--color-card-border);
-  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-btn);
   padding: 12px 22px;
   font-size: 14px;
-  font-weight: 600;
-  color: var(--color-fg);
+  font-weight: 700;
+  color: var(--color-brand);
   background: transparent;
   cursor: pointer;
 }
@@ -205,7 +197,7 @@ body::before {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.4);
   border-top-color: #ffffff;
   animation: spin 0.7s linear infinite;
 }
@@ -238,9 +230,9 @@ body::before {
 
 .code-box {
   width: 100%;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--color-card-border);
-  border-radius: var(--radius-lg);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
   padding: 18px 20px;
   margin: 4px 0 4px;
   display: flex;
@@ -266,7 +258,7 @@ body::before {
   font-weight: 700;
   font-family: 'SFMono-Regular', ui-monospace, Menlo, Consolas, monospace;
   letter-spacing: 0.02em;
-  color: var(--color-fg);
+  color: var(--color-brand);
 }
 
 .soldout-text {
@@ -279,7 +271,7 @@ body::before {
 
 .error-text {
   font-size: 14.5px;
-  color: var(--color-muted-fg);
+  color: var(--color-error);
   margin: 8px 0 20px;
 }
 
@@ -292,7 +284,7 @@ body::before {
 
 .wordmark {
   font-size: 11px;
-  color: rgba(245, 245, 247, 0.35);
+  color: var(--color-disabled);
   letter-spacing: 0.02em;
 }
 
