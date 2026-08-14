@@ -28,22 +28,26 @@
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  overflow: hidden; /* 스크롤할 내용이 없는 1화면 카드 — 모바일 브라우저 주소창 여닫힘으로 생기는 스크롤 방지 */
 }
 
 body {
   background: var(--color-bg);
   color: var(--color-fg);
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh; /* 모바일 사파리/크롬의 동적 뷰포트(주소창 크기 변화) 대응, 지원 브라우저에서 100vh를 덮어씀 */
 }
 
 .page {
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 24px;
+  box-sizing: border-box;
 }
 
 .support-text {
