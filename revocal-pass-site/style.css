@@ -99,20 +99,6 @@ body {
   color: var(--color-brand);
 }
 
-/* 앱 차트/보조 컬러(Accent 보라, ColorM)를 로고 위 작은 포인트로 — 브랜드 팔레트 5색 중 유일하게
-   시맨틱 배지에 안 쓰이는 색이라 여기서만 가볍게 사용 */
-.logo-row::after {
-  content: '';
-  display: inline-block;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--color-accent);
-  margin-left: 8px;
-  align-self: flex-start;
-  margin-top: 2px;
-}
-
 .badge-row {
   margin-bottom: 16px;
 }
