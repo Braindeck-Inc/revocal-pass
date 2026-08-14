@@ -57,6 +57,15 @@ body {
   color: var(--color-disabled);
 }
 
+.support-link {
+  color: var(--color-disabled);
+  text-decoration: underline;
+}
+
+.support-link:hover {
+  color: var(--color-brand);
+}
+
 .card {
   width: 100%;
   max-width: 420px;
