@@ -134,6 +134,10 @@ body::before {
   align-items: center;
 }
 
+.state[hidden] {
+  display: none;
+}
+
 .headline {
   font-size: 22px;
   font-weight: 700;
