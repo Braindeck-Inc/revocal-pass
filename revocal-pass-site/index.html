@@ -36,8 +36,10 @@
         <h1 class="headline">지금, 리보컬을 먼저 만나보세요</h1>
         <p class="subtext">코엑스 부스 방문객을 위한 3일간의 체험 코드입니다.</p>
 
-        <!-- §5.1 Cloudflare Turnstile — invisible 모드, 화면에 아예 안 보임 -->
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAAEPfJA3TYzlgbvSW" data-callback="onTurnstileSuccess" data-theme="light" data-size="invisible"></div>
+        <!-- §5.1 Cloudflare Turnstile — Managed 모드, 대부분 비가시형으로 통과(위험도 낮으면 자동으로 안 보임).
+             ⚠️ data-size="invisible"은 존재하지 않는 값이라 위젯 초기화 자체가 깨졌던 버그(260814) — 제거함.
+             유효한 값은 compact/flexible/normal뿐이라 명시 안 하면 기본값(normal)으로 안전하게 동작. -->
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAEPfJA3TYzlgbvSW" data-callback="onTurnstileSuccess" data-theme="light"></div>
 
         <button id="claim-btn" class="btn-primary" type="button">
           <span class="btn-label">체험 코드 받기</span>
