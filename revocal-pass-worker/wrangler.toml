@@ -10,12 +10,15 @@ binding = "DB"
 database_name = "revocal-pass-worker-db"
 database_id = "9a80ab88-f169-474a-b224-6ba9c754f209"
 
-[vars]
-# ⚠️ 260814 임시: 시연/리허설용으로 오늘~모레(8/14~8/16)를 행사 기간으로 임시 설정.
-# 실제 행사(8/19~8/21) 전에 반드시 아래 원래 값으로 되돌리고 D1도 리셋할 것 — README/기획 문서 참고.
-# 원래 값: "2026-08-19,2026-08-20,2026-08-21"
-EVENT_DAYS = "2026-08-14,2026-08-15,2026-08-16"
+# 260814: 행사일(더미 8/14~16 + 실제 8/19~21)은 이제 env var가 아니라
+# src/event-window.ts에 직접 하드코딩됨(TJ 승인 — 1회성 사이트라 하드코딩해도 무방).
+# 실제 행사 시작 전 재고 리셋은 아래 [triggers] cron이 자동으로 처리(src/index.ts scheduled 핸들러).
 
+[triggers]
+# 8/17 00:00 KST(=8/16 15:00 UTC)에 1회 실행 — DEMO_DAYS 기간 소진분을 실제 행사 전에 리셋.
+crons = ["0 15 16 8 *"]
+
+[vars]
 # 배지 임계값(§9.1 #5)
 LOW_THRESHOLD = "30"
 CRITICAL_THRESHOLD = "10"

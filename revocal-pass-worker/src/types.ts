@@ -1,7 +1,6 @@
 export interface Env {
   DB: D1Database;
 
-  EVENT_DAYS: string; // "2026-08-19,2026-08-20,2026-08-21"
   LOW_THRESHOLD: string;
   CRITICAL_THRESHOLD: string;
   DAILY_BASE_QUOTA: string;

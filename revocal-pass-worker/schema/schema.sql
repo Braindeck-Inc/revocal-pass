@@ -38,3 +38,11 @@ CREATE TABLE IF NOT EXISTS page_tokens (
   issued_at INTEGER NOT NULL,          -- epoch ms
   consumed INTEGER NOT NULL DEFAULT 0
 );
+
+-- 260814: DEMO_DAYS→REAL_DAYS 자동 리셋 cron(src/index.ts scheduled)의 중복 실행 방지 플래그.
+-- 이 사이트가 1회성이라 마이그레이션 프레임워크 없이 이 테이블 하나로 단순하게 처리.
+CREATE TABLE IF NOT EXISTS system_flags (
+  key TEXT PRIMARY KEY,
+  value TEXT NOT NULL,
+  set_at TEXT NOT NULL
+);

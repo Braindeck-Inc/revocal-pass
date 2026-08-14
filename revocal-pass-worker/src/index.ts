@@ -6,6 +6,7 @@ import { checkAndBumpIpRateLimit } from './rate-limit';
 import { verifyTurnstile } from './turnstile';
 import { claimCode } from './claim';
 import { corsHeaders, jsonResponse } from './cors';
+import { runDemoToRealResetOnce } from './demo-reset';
 
 // §4.4 회수(recycle) 워크플로우는 이번 행사에서 보류 — /api/admin/recycle는 의도적으로 미구현.
 
@@ -110,5 +111,11 @@ export default {
     }
 
     return jsonResponse(env, { error: 'not_found' }, { status: 404 });
+  },
+
+  // wrangler.toml [triggers] cron("0 15 16 8 *" = 8/17 00:00 KST)이 호출.
+  // DEMO_DAYS(8/14~16) 소진분을 REAL_DAYS(8/19~21) 시작 전에 1회 자동 리셋(§demo-reset.ts).
+  async scheduled(_event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
+    ctx.waitUntil(runDemoToRealResetOnce(env.DB));
   },
 };
