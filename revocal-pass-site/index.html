@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Revocal Pass</title>
+  <meta name="description" content="코엑스 부스 방문객을 위한 3일간의 체험 코드입니다." />
+
+  <meta property="og:title" content="Revocal Pass" />
+  <meta property="og:site_name" content="Revocal Pass" />
+  <meta property="og:description" content="코엑스 부스 방문객을 위한 3일간의 체험 코드입니다." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page">
+    <div class="card" id="card">
+
+      <!-- 로고 -->
+      <div class="logo-row">
+        <img src="assets/logo.svg" alt="Revocal" class="logo-img" id="logo-img" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='inline-flex';" />
+        <span class="logo-fallback" id="logo-fallback">Revocal</span>
+      </div>
+
+      <!-- 상태 배지 -->
+      <div class="badge-row" id="badge-row" hidden>
+        <span class="badge" id="pool-badge"></span>
+      </div>
+
+      <!-- 기본(발급 대기) 상태 -->
+      <section id="state-idle" class="state">
+        <h1 class="headline">지금, 리보컬을 먼저 만나보세요</h1>
+        <p class="subtext">코엑스 부스 방문객을 위한 3일간의 체험 코드입니다.</p>
+
+        <!-- §5.1 Cloudflare Turnstile — Managed 모드, 대부분 비가시형으로 통과 -->
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAEPfJA3TYzlgbvSW" data-callback="onTurnstileSuccess" data-theme="dark"></div>
+
+        <button id="claim-btn" class="btn-primary" type="button">
+          <span class="btn-label">체험 코드 받기</span>
+          <span class="btn-spinner" hidden></span>
+        </button>
+
+        <!-- 허니팟: 사람에게는 보이지 않음 -->
+        <div class="honeypot" aria-hidden="true">
+          <label for="hp-field">Leave this field empty</label>
+          <input type="text" id="hp-field" name="hp-field" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <p class="fine-print">
+          발급된 코드는 회원가입 화면의 인증코드 입력란에 사용하시면 됩니다.<br />
+          코드는 2026년 9월 11일까지 사용 가능합니다.
+        </p>
+      </section>
+
+      <!-- 발급 결과(성공) 상태 -->
+      <section id="state-issued" class="state" hidden>
+        <div class="success-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="11" stroke="#32D16D" stroke-width="1.6"/>
+            <path d="M7.5 12.5L10.3 15.3L16.5 9" stroke="#32D16D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h1 class="headline">코드가 발급되었습니다</h1>
+        <p class="subtext">아래 정보를 회원가입 화면에 입력해주세요.</p>
+
+        <div class="code-box">
+          <div class="code-field">
+            <span class="code-field-label">추천인코드</span>
+            <span class="code-field-value" id="issued-code">-</span>
+          </div>
+          <div class="code-field">
+            <span class="code-field-label">임시 비밀번호</span>
+            <span class="code-field-value" id="issued-password">-</span>
+          </div>
+        </div>
+
+        <p class="fine-print">
+          발급된 코드는 회원가입 화면의 인증코드 입력란에 사용하시면 됩니다.<br />
+          코드는 2026년 9월 11일까지 사용 가능합니다.
+        </p>
+      </section>
+
+      <!-- 소진 상태 -->
+      <section id="state-soldout" class="state" hidden>
+        <p class="soldout-text" id="soldout-message"></p>
+      </section>
+
+      <!-- 행사 기간 아님 -->
+      <section id="state-outofwindow" class="state" hidden>
+        <h1 class="headline">지금, 리보컬을 먼저 만나보세요</h1>
+        <p class="subtext">코엑스 부스 방문객을 위한 3일간의 체험 코드입니다.</p>
+        <button class="btn-primary" type="button" disabled>
+          <span class="btn-label">체험 코드 받기</span>
+        </button>
+        <p class="fine-print">행사 기간에만 발급됩니다 (8/19 ~ 8/21)</p>
+      </section>
+
+      <!-- 오류 상태 -->
+      <section id="state-error" class="state" hidden>
+        <p class="error-text">잠시 후 다시 시도해주세요.</p>
+        <button id="retry-btn" class="btn-secondary" type="button">다시 시도</button>
+      </section>
+
+      <footer class="footer">
+        <span class="wordmark">Revocal Pass</span>
+      </footer>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</body>
+</html>
