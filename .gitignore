@@ -1,6 +1,10 @@
 # 코드/비밀번호 원본 CSV — 절대 커밋 금지 (§4.1)
 *.csv
 
+# 내부 기획/작업 문서(리포 루트의 날짜 접두사 md) — 커밋 금지, README는 예외
+/*.md
+!/README.md
+
 # Node / Cloudflare Workers
 node_modules/
 .wrangler/
