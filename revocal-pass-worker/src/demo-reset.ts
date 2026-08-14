@@ -5,7 +5,7 @@ const RESET_FLAG_KEY = 'demo_to_real_reset_2026';
 /**
  * ⚠️ 의도적 하드코딩(260814, TJ 승인 — 1회성 사이트).
  * event-window.ts의 DEMO_DAYS(8/14~16) 소진분을 REAL_DAYS(8/19~21) 시작 전에
- * 자동으로 원복하는 1회성 작업. wrangler.toml의 [triggers] cron이 8/17 00:00 KST에
+ * 자동으로 원복하는 1회성 작업. wrangler.toml의 [triggers] cron이 8/18 00:00 KST에
  * 이 함수를 호출함(scheduled 핸들러, src/index.ts).
  *
  * system_flags 테이블로 중복 실행을 막음 — cron이 같은 해에 두 번 이상 걸리거나

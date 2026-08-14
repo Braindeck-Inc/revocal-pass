@@ -113,7 +113,7 @@ export default {
     return jsonResponse(env, { error: 'not_found' }, { status: 404 });
   },
 
-  // wrangler.toml [triggers] cron("0 15 16 8 *" = 8/17 00:00 KST)이 호출.
+  // wrangler.toml [triggers] cron("0 15 17 8 *" = 8/18 00:00 KST)이 호출.
   // DEMO_DAYS(8/14~16) 소진분을 REAL_DAYS(8/19~21) 시작 전에 1회 자동 리셋(§demo-reset.ts).
   async scheduled(_event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
     ctx.waitUntil(runDemoToRealResetOnce(env.DB));

@@ -15,8 +15,8 @@ database_id = "9a80ab88-f169-474a-b224-6ba9c754f209"
 # 실제 행사 시작 전 재고 리셋은 아래 [triggers] cron이 자동으로 처리(src/index.ts scheduled 핸들러).
 
 [triggers]
-# 8/17 00:00 KST(=8/16 15:00 UTC)에 1회 실행 — DEMO_DAYS 기간 소진분을 실제 행사 전에 리셋.
-crons = ["0 15 16 8 *"]
+# 8/18 00:00 KST(=8/17 15:00 UTC)에 1회 실행 — DEMO_DAYS 기간 소진분을 실제 행사 전에 리셋.
+crons = ["0 15 17 8 *"]
 
 [vars]
 # 배지 임계값(§9.1 #5)
