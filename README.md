@@ -14,6 +14,16 @@
 - **코드 목록 자체는 어디에도 공개 안 됨.** 화면에 있는 어떤 파일에도 코드/비밀번호 목록이 들어있지 않고, 버튼을 누를 때마다 서버가 그 순간 하나만 꺼내서 보내줌.
 - **100개 다 소진되면** 안내 문구로 자동 전환되고, 그 이후 요청은 더 이상 코드가 나가지 않음.
 
+## 화면
+
+| 발급 전 | 소진임박 | 거의 소진 |
+|---|---|---|
+| ![발급 전](docs/screenshots/01-idle.png) | ![소진임박](docs/screenshots/02-low.png) | ![거의 소진](docs/screenshots/03-critical.png) |
+
+| 매진 | 발급 완료 | 행사 기간 아님 |
+|---|---|---|
+| ![매진](docs/screenshots/04-soldout.png) | ![발급 완료](docs/screenshots/05-issued.png) | ![행사 기간 아님](docs/screenshots/06-outofwindow.png) |
+
 ## 구성
 
 - `revocal-pass-site/` — 화면(GitHub Pages로 배포)
