@@ -1,0 +1,5 @@
+# 로컬 개발용 시크릿 템플릿 — 실제 값 채운 뒤 파일명을 .dev.vars로 바꿔서 사용.
+# .dev.vars는 .gitignore 처리되어 있어 커밋되지 않음.
+
+TURNSTILE_SECRET_KEY=
+PAGE_TOKEN_SECRET=

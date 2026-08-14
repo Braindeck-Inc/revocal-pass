@@ -1,0 +1,18 @@
+{
+  "name": "revocal-pass-worker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Revocal Pass — 발급 API (Cloudflare Worker + D1). 비밀 CSV/코드 풀을 쥐고 있는 유일한 컴포넌트.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:schema": "wrangler d1 execute revocal-pass-worker-db --file=schema/schema.sql",
+    "db:schema:local": "wrangler d1 execute revocal-pass-worker-db --local --file=schema/schema.sql",
+    "import:csv": "node --loader ts-node/esm scripts/import-csv.ts"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250801.0",
+    "typescript": "^5.5.4",
+    "wrangler": "^3.78.0"
+  }
+}

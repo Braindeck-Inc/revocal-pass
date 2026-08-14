@@ -1,0 +1,14 @@
+# 코드/비밀번호 원본 CSV — 절대 커밋 금지 (§4.1)
+*.csv
+
+# Node / Cloudflare Workers
+node_modules/
+.wrangler/
+.dev.vars
+*.sqlite
+*.sqlite3
+
+# 생성된 임포트 SQL(코드 목록 그대로 포함) — 절대 커밋 금지
+revocal-pass-worker/scripts/import-codes.sql
+
+.DS_Store

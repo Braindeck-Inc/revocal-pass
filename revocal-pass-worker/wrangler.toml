@@ -1,0 +1,45 @@
+name = "revocal-pass-worker"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+
+# Cloudflare 계정 ID (Tj@braindeck.net's Account, 260814 API로 확인, 비밀 아님)
+account_id = "a13e5683828f8f3c8e092c8e671d72f7"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "revocal-pass-worker-db"
+database_id = "9a80ab88-f169-474a-b224-6ba9c754f209"
+
+[vars]
+# 행사 운영 기간(§9.1 #6): 00:00~24:00 KST, 8/19~8/21
+EVENT_DAYS = "2026-08-19,2026-08-20,2026-08-21"
+
+# 배지 임계값(§9.1 #5)
+LOW_THRESHOLD = "30"
+CRITICAL_THRESHOLD = "10"
+
+# 일일 기본 쿼터(§4.2)
+DAILY_BASE_QUOTA = "100"
+
+# 페이지로드 토큰 TTL(§5.2) / 최소 체류시간(§5.3), 단위: ms
+PAGE_TOKEN_TTL_MS = "60000"
+MIN_DWELL_MS = "1500"
+
+# IP 보조 한도(§5.5): 10분에 15회 초과 시 10분 쿨다운
+IP_RATE_LIMIT_WINDOW_MS = "600000"
+IP_RATE_LIMIT_MAX = "15"
+IP_RATE_LIMIT_COOLDOWN_MS = "600000"
+
+# 로컬/스테이징 전용 override — 프로덕션 배포 시 반드시 미설정 또는 "false"
+# 켜두면 실제 날짜와 무관하게 §8.2 화면 전수 확인이 가능해짐(하루마다 순환하는 가상 day 사용)
+FORCE_WINDOW_OPEN = "false"
+
+# Turnstile Secret Key 도착 전까지 로컬/스테이징에서 siteverify 호출을 건너뛰는 플래그
+# 260814: Secret Key 등록 완료(wrangler secret) → false로 전환, 실제 검증 활성화
+TURNSTILE_MOCK = "false"
+
+# Site Key(공개): 0x4AAAAAAEPfJA3TYzlgbvSW — revocal-pass-site/index.html에 반영 완료
+# Secret Key는 wrangler secret put TURNSTILE_SECRET_KEY로 등록 완료(260814), 이 파일엔 없음
+
+# CORS 허용 origin — GitHub Pages 배포 주소(260814 확정: Braindeck-Inc 조직, braindeck-inc.github.io)
+ALLOWED_ORIGIN = "https://braindeck-inc.github.io"
