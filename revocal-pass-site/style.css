@@ -57,12 +57,14 @@ body {
   color: var(--color-disabled);
 }
 
-.support-link {
-  color: var(--color-disabled);
+.support-link,
+.support-link:visited {
+  color: inherit;
   text-decoration: underline;
 }
 
-.support-link:hover {
+.support-link:hover,
+.support-link:focus {
   color: var(--color-brand);
 }
 
